@@ -1,37 +1,43 @@
 /* eslint-disable */
-import "bootstrap";
-import "./style.css";
 
-import "./assets/img/rigo-baby.jpg";
-import "./assets/img/4geeks.ico";
-
-window.onload = function() {
-  document.getElementById("excuse").innerHTML = generadorExcusas();
-  console.log("Hello Rigo from the console!");
+const getRandomElement = array => {
+  const randomIndex = Math.floor(Math.random() * array.length);
+  return array[randomIndex];
 };
-let generadorExcusas = () => {
-  let who = ["The dog", "My grandma", "The mailman", "My cat"];
-  let action = ["ate", "shaved", "crushed", "licked"];
-  let what = ["my leg", "my phone", "the car"];
-  let when = [
-    "before the class",
-    "when I was sleeping",
-    "while I was exercising",
-    "during my lunch",
-    "while I was praying"
-  ];
-  let randomwho = Math.floor(Math.random() * who.length);
-  let randomaction = Math.floor(Math.random() * action.length);
-  let randomwhat = Math.floor(Math.random() * what.length);
-  let randomwhen = Math.floor(Math.random() * when.length);
 
-  return (
-    who[randomwho] +
-    " " +
-    action[randomaction] +
-    " " +
-    what[randomwhat] +
-    " " +
-    when[randomwhen]
-  );
+const getGuilty = () => {
+  const who = ["my cat", "my dog", "my grandma"];
+  return getRandomElement(who);
 };
+const getAction = () => {
+  const action = ["ate", "peed", "crushed", "broke"];
+  return getRandomElement(action);
+};
+const getTarget = () => {
+  const target = ["my homework", "my phone", "the car"];
+  return getRandomElement(target);
+};
+const getWhen = () => {
+  const when = ["yesterday", "two days ago", "the last month"];
+  return getRandomElement(when);
+};
+
+function main() {
+  const guilty = getGuilty();
+  const action = getAction();
+  const target = getTarget();
+  const when = getWhen();
+
+  const printMessage = getMessage();
+  console.log(printMessage);
+}
+
+const getMessage = () => {
+  return `${getGuilty()} ${getAction()} ${getTarget()} ${getWhen()}`;
+};
+
+window.onload = () => {
+  document.querySelector("#excuse").innerHTML = getMessage();
+};
+
+main();
